@@ -1,1 +1,126 @@
-This is new 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+            --header-color: #007bff;
+            --transition-speed: 1s;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease-in-out;
+            text-align: center;
+        }
+
+        .section.is-visible {
+            opacity: 1;
+        }
+
+        .section-header {
+            font-size: 3em;
+            font-weight: 600;
+            color: var(--header-color);
+            margin-bottom: 20px;
+        }
+
+        .content {
+            max-width: 800px;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        #about-section {
+            background-color: #fff;
+        }
+
+        #education-section {
+            background-color: #e9ecef;
+        }
+
+        #achievement-section {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <section id="about-section" class="section">
+            <h1 class="section-header">About Me</h1>
+            <div class="content">
+                <p>Hello! I'm a passionate developer with a strong interest in creating clean, efficient, and user-friendly applications. I enjoy tackling complex problems and am always eager to learn new technologies. Outside of coding, you can find me exploring new places or reading a good book.</p>
+            </div>
+        </section>
+
+        <section id="education-section" class="section">
+            <h1 class="section-header">Education</h1>
+            <div class="content">
+                <h2>University Name</h2>
+                <p><strong>Bachelor of Science in Computer Science</strong></p>
+                <p>Graduated with honors in 2025. My coursework included data structures, algorithms, software engineering, and artificial intelligence. I was a member of the university's competitive programming team.</p>
+            </div>
+        </section>
+
+        <section id="achievement-section" class="section">
+            <h1 class="section-header">Achievements</h1>
+            <div class="content">
+                <ul>
+                    <li><p><strong>Award for Innovation:</strong> Recognized for developing an open-source project that simplified data visualization for non-technical users.</p></li>
+                    <li><p><strong>Hackathon Winner:</strong> Led a team to victory at the Annual Tech Hackathon, creating a mobile app to help local communities organize cleanup events.</p></li>
+                    <li><p><strong>Certified Professional:</strong> Hold a certification in [e.g., AWS Cloud Practitioner, Google Professional Data Engineer].</p></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
+
